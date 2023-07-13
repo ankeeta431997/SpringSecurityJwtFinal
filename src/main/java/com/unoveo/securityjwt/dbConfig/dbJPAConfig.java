@@ -38,7 +38,7 @@ public class dbJPAConfig {
     public static DataSource dataSource(){
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
         dataSource.setDriverClassName("org.mariadb.jdbc.Driver");
-        dataSource.setUrl("jdbc:mariadb://localhost:3306/testjwt?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true");
+        dataSource.setUrl("jdbc:mariadb://localhost:3306/securityjwt?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true");
         dataSource.setUsername("root");
         dataSource.setPassword("Ankita@1997");
         return dataSource;

@@ -1,7 +1,7 @@
 package com.unoveo.securityjwt.security.jwt;
 
 
-import com.unoveo.securityjwt.security.services.UserDetailsServiceImpl;
+
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -16,7 +16,7 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 import org.springframework.web.filter.OncePerRequestFilter;
-
+import com.unoveo.securityjwt.security.services.UserDetailsServiceImpl;
 import java.io.IOException;
 
 public class AuthTokenFilter extends OncePerRequestFilter {
@@ -64,7 +64,7 @@ public UserDetailsServiceImpl userDetailsService ;
   private String parseJwt(HttpServletRequest request) {
     System.out.println("From AuthFilter into the parseJwt");
     String headerAuth = request.getHeader("Authorization");
-    System.out.println("From AuthFilter into the parseJwt"+headerAuth);
+    System.out.println("From AuthFilter into the parseJwt "+headerAuth);
     if (StringUtils.hasText(headerAuth) && headerAuth.startsWith("Bearer ")) {
       return headerAuth.substring(7);
     }
