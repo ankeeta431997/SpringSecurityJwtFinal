@@ -84,7 +84,7 @@ void runTestsFromExcel() throws ServletException, IOException {
         calculator.doPost(request, response);
 
         // Assert
-     //   verify(response).setContentType("application/json");
+       //verify(response).setContentType("application/json");
         writer.flush();
         ExpressionResponse expressionResponse = new Gson().fromJson(stringWriter.toString(), ExpressionResponse.class);
         //System.out.println("Result after test " + expressionResponse);
