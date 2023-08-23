@@ -63,7 +63,7 @@ public class calculatorController {
 //    }
 @Test
 void runTestsFromExcel() throws ServletException, IOException {
-    Workbook workbook = WorkbookFactory.create(new File("src/test/testData/test.xls"));
+    Workbook workbook = WorkbookFactory.create(new File("src/test/testData/test.xlsx"));
     Sheet sheet = workbook.getSheetAt(0); // Assuming the data is in the first sheet
 
     for (int rowNum = 1; rowNum <= sheet.getLastRowNum(); rowNum++) {
@@ -84,7 +84,7 @@ void runTestsFromExcel() throws ServletException, IOException {
         calculator.doPost(request, response);
 
         // Assert
-       //verify(response).setContentType("application/json");
+      // verify(response).setContentType("application/json");
         writer.flush();
         ExpressionResponse expressionResponse = new Gson().fromJson(stringWriter.toString(), ExpressionResponse.class);
         //System.out.println("Result after test " + expressionResponse);
