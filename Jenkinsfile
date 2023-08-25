@@ -29,7 +29,7 @@ pipeline {
             
         stage ('Deploy') {
             steps{
-            deploy adapters: [tomcat9(credentialsId: 'eefdb4cc-9e2e-4d2f-b8f6-559d0b0c214c', path: '', url: 'http://localhost:8080/')], contextPath: 'SpringWithJwt', onFailure: false, war: '**/*.war'
+            deploy adapters: [tomcat9(credentialsId: 'eefdb4cc-9e2e-4d2f-b8f6-559d0b0c214c', path: '', url: 'http://localhost:8080/')], contextPath: 'Calculator', onFailure: false, war: '**/*.war'
              echo "Deploy successful";
             }
         }
