@@ -39,6 +39,7 @@ pipeline {
            }
 		
         }   
+    }
 	    	 post {
         always {
             script {
@@ -63,8 +64,6 @@ Jenkins
                 )
             }
         }
-
-    }
-
 	
+}
 }
