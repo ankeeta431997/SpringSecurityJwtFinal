@@ -38,9 +38,8 @@ pipeline {
              echo "Now you can monitor!";
            }
 		
-        }    
-    }
-	 post {
+        }   
+	    	 post {
         always {
             script {
                def projectName = JOB_NAME.tokenize('/').last()
@@ -64,6 +63,8 @@ Jenkins
                 )
             }
         }
+
+    }
 
 	
 }
