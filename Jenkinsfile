@@ -4,7 +4,6 @@ pipeline {
 	maven 'Maven'
 	}
     stages {  
-            
             stage ('Compile') {  
                   steps{
                     bat label: '', script: 'mvn compile'
@@ -29,7 +28,7 @@ pipeline {
             
         stage ('Deploy') {
             steps{
-            deploy adapters: [tomcat9(credentialsId: 'tomcatCredential', path: '', url: 'http://localhost:8080/')], contextPath: 'Calculator', onFailure: false, war: '**/*.war'
+            deploy adapters: [tomcat9(credentialsId: 'tomcatCredential', path: '', url: 'http://localhost:8080/')], contextPath: 'jenkins_springJwt', onFailure: false, war: '**/*.war'
              echo "Deploy successful";
             }
         }
@@ -37,10 +36,9 @@ pipeline {
            steps{ 
              echo "Now you can monitor!";
            }
-		
-        }   
+        }
     }
-	    	 post {
+	 post {
         always {
             script {
                def projectName = JOB_NAME.tokenize('/').last()
@@ -64,6 +62,5 @@ Jenkins
                 )
             }
         }
-	
-}
+    }
 }
