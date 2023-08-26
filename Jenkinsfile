@@ -28,7 +28,7 @@ pipeline {
             
         stage ('Deploy') {
             steps{
-            deploy adapters: [tomcat9(credentialsId: 'tomcatCredential', path: '', url: 'http://localhost:8080/')], contextPath: 'jenkins_springJwt', onFailure: false, war: '**/*.war'
+            deploy adapters: [tomcat9(credentialsId: 'tomcatCredential', path: '', url: 'http://localhost:8080/')], contextPath: 'jenkins', onFailure: false, war: '**/*.war'
              echo "Deploy successful";
             }
         }
