@@ -4,63 +4,63 @@ pipeline {
 	maven 'Maven'
 	}
     stages {  
-            stage ('Compile') {  
-                  steps{
-                    bat label: '', script: 'mvn compile'
-                    echo "test successful";
+            // stage ('Compile') {  
+            //       steps{
+            //         bat label: '', script: 'mvn compile'
+            //         echo "test successful";
                     
-                } 
-            }
-            stage ('Build') {  
-                  steps{
-                    bat label: '', script: 'mvn clean'
-                    bat label: '', script: 'mvn package'
-                    echo "build successful";
+            //     } 
+            // }
+            // stage ('Build') {  
+            //       steps{
+            //         bat label: '', script: 'mvn clean'
+            //         bat label: '', script: 'mvn package'
+            //         echo "build successful";
                     
-                } 
-            }
-             stage ('Test') {  
+            //     } 
+            // }
+             stage ('Build') {  
                   steps{
-                    bat label: '', script: 'mvn test'
+                    bat label: '', script: 'mvn clean install'
                     echo "test successful";
                 } 
             }
             
-        stage ('Deploy') {
-            steps{
-            deploy adapters: [tomcat9(credentialsId: 'tomcatCredential', path: '', url: 'http://localhost:8080/')], contextPath: 'jenkins', onFailure: false, war: '**/*.war'
-             echo "Deploy successful";
-            }
-        }
-        stage ('Monitor') { 
-           steps{ 
-             echo "Now you can monitor!";
-           }
-        }
+        // stage ('Deploy') {
+        //     steps{
+        //     deploy adapters: [tomcat9(credentialsId: 'tomcatCredential', path: '', url: 'http://localhost:8080/')], contextPath: 'jenkins', onFailure: false, war: '**/*.war'
+        //      echo "Deploy successful";
+        //     }
+        // }
+        // stage ('Monitor') { 
+        //    steps{ 
+        //      echo "Now you can monitor!";
+        //    }
+        // }
     }
 	 post {
-        always {
-            script {
-               def projectName = JOB_NAME.tokenize('/').last()
-                def buildNumber = currentBuild.number
-                def buildStatus = currentBuild.result ?: 'UNKNOWN'
+//         always {
+//             script {
+//                def projectName = JOB_NAME.tokenize('/').last()
+//                 def buildNumber = currentBuild.number
+//                 def buildStatus = currentBuild.result ?: 'UNKNOWN'
 
-                def emailBody = """$projectName - Build # $buildNumber - $buildStatus:
+//                 def emailBody = """$projectName - Build # $buildNumber - $buildStatus:
 
-Check console output at ${env.BUILD_URL} to view the results.
+// Check console output at ${env.BUILD_URL} to view the results.
 
-Note: This is an auto-generated email. Do not reply to this email.
+// Note: This is an auto-generated email. Do not reply to this email.
 
-Thanks,
-Jenkins
-"""
+// Thanks,
+// Jenkins
+// """
 
-                emailext (
-                    body: emailBody,
-                    to:'ankeeta431997@gmail.com',
-                    subject: "$projectName - Build # $buildNumber - $buildStatus"
-                )
-            }
-        }
+//                 emailext (
+//                     body: emailBody,
+//                     to:'ankeeta431997@gmail.com',
+//                     subject: "$projectName - Build # $buildNumber - $buildStatus"
+//                 )
+//             }
+//         }
     }
 }
