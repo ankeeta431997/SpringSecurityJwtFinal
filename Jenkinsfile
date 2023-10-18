@@ -5,7 +5,7 @@ pipeline {
       
              stage ('Build') {  
                   steps{
-                    bat label: '', script: 'mvn clean install'
+                    bat label: '', script: 'clean install'
                     echo "test successful";
                 } 
 	     }          
