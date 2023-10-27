@@ -15,17 +15,17 @@ pipeline {
                 }
             }
         }
-        stage('Push image to Hub'){
-            steps{
-                script{
+        stage('Push image to Hub') {
+            steps {
+                script {
                     withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerpwd')]) {
-					sh 'docker login -u AnkitaU -p ${dockerpwd}'
-					}
-                   sh 'docker push ankitadocker/devopps-docker'
-				   echo 'Image push successful'
+                        sh "echo ${dockerpwd} | docker login -u AnkitaU --password-stdin"
+                    }
+                    sh 'docker push ankita/devopps-docker' 
+                    echo 'Image push successful'
                 }
             }
-        }
+	}
        
     }
 }
