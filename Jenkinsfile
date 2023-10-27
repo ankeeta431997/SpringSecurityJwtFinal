@@ -20,7 +20,7 @@ pipeline {
                 script {
                   withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
 			}
-                    sh 'docker push springwithjwt/devopps-docker' 
+                    sh 'docker push ankita/devopps-docker' 
                     echo 'Image push successful'
                 }
             }
