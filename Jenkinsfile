@@ -18,9 +18,8 @@ pipeline {
         stage('Push image to Hub') {
             steps {
                 script {
-                    withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerpwd')]) {
-                        sh "echo ${dockerpwd} | docker login -u AnkitaU --password-stdin"
-                    }
+                  withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
+}
                     sh 'docker push ankita/devopps-docker' 
                     echo 'Image push successful'
                 }
