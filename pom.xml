@@ -3,7 +3,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.example</groupId>
   <artifactId>SpringSecurityJwt</artifactId>
-  <packaging>war</packaging>
+  <packaging>jar</packaging>
   <version>1.0-SNAPSHOT</version>
   <name>Spring Jwt Webapp</name>
   <url>http://maven.apache.org</url>
@@ -186,7 +186,7 @@
 
   </dependencies>
   <build>
-    <finalName>SpringJwt</finalName>
+    <finalName>devopps-docker</finalName>
     <plugins>
       <plugin>
         <artifactId>maven-compiler-plugin</artifactId>
