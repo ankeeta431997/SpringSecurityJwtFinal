@@ -18,8 +18,8 @@ pipeline {
         stage('Push image to Hub') {
             steps {
                 script {
-                  withCredentials([string(credentialsId: 'ankitau', variable: 'dockerhub_pwd')]) {
-			}
+		withCredentials([usernamePassword(credentialsId: 'dockerhub_pwd',   passwordVariable: 'PASSWORD')]) {
+                    sh 'docker login -u ankitau -p $PASSWORD'
                     sh 'docker push ankitau/devops-docker' 
                     echo 'Image push successful'
                 }
