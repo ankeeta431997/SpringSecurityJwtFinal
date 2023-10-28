@@ -11,7 +11,7 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                   sh 'docker build -t ankitau/devopps-docker .'
+                   sh 'docker build -t ankitau/devops-docker .'
                 }
             }
         }
@@ -20,7 +20,7 @@ pipeline {
                 script {
                   withCredentials([string(credentialsId: 'dockerhub-pwd', variable: 'dockerhubpwd')]) {
 			}
-                    sh 'docker push ankitau/devopps-docker' 
+                    sh 'docker push ankitau/devops-docker' 
                     echo 'Image push successful'
                 }
             }
