@@ -19,11 +19,11 @@ pipeline {
             steps {
 		withCredentials([usernamePassword(credentialsId: 'dockerhub_pwd',   passwordVariable: 'PASSWORD')]) {
 		    sh 'docker login -u ankitau -p $PASSWORD'
-		    sh 'docker push ankitau/devops-docker' 
+	        sh 'docker push ankitau/devops-docker' 
 		    echo 'Image push successful'    
-            }
+            	}
+		}	
 	}
-       
     }
 }
 
