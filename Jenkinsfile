@@ -20,7 +20,7 @@ pipeline {
                 steps {
                 script {
                     withDockerRegistry([credentialsId: 'dockerhubpwd', url: '']) {
-                        sh 'docker push ankita/devopps-docker'
+                        sh 'docker push ankitau/devopps-docker'
                     }
                     echo 'Image push successful'
                 }
