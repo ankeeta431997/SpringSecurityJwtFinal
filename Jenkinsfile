@@ -11,19 +11,22 @@ pipeline {
         stage('Build docker image'){
             steps{
                 script{
-                   sh 'docker build -t ankitau/devops-docker .'
+                   sh 'docker build -t ankitau/devopps-docker .'
                 }
             }
         }
-        stage('Push image to Hub') {
-            steps {
-		withCredentials([usernamePassword(credentialsId: 'dockerhub_pwd',   passwordVariable: 'PASSWORD')]) {
-		    sh 'docker login -u ankitau -p $PASSWORD'
-	        sh 'docker push ankitau/devops-docker' 
-		    echo 'Image push successful'    
-            	}
-		}	
-	}
+        stage('Push image to Hub'){
+            steps{
+                script{
+                    withCredentials([string(credentialsId: 'docker-hub', variable: 'dockerpwd')]) {
+					sh 'docker login -u ankitau -p ${dockerpwd}'
+					}
+                   sh 'docker push ankitau/devopps-docker'
+				   echo 'Image push successful'
+            }
+        }
+       
     }
 }
+
 
