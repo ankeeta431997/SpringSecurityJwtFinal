@@ -21,7 +21,7 @@ pipeline {
                    withCredentials([string(credentialsId: 'docker_3', variable: 'docker_12')]) {
 
 
-					sh 'docker login -u ankitau -p ${Unoveo@12}'
+					sh 'docker login -u ankitau -p ${docker_12}'
 					}
                    sh 'docker push ankitau/devopps-docker'
 				   echo 'Image push successful'
