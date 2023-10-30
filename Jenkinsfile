@@ -18,11 +18,11 @@ pipeline {
         stage('Push image to Hub'){
             steps{
                 script{
-                   withCredentials([string(credentialsId: 'docker_3', variable: 'docker_12')]) {
-
-
-					sh 'docker login -u test -p ${docker_12}'
-					}
+               // This step should not normally be used in your script. Consult the inline help for details.
+                  withDockerRegistry(credentialsId: 'dockerhubpwd') {
+                  // some block
+	            sh 'docker login -u test -p ${docker_12}'
+		}
                    sh 'docker push ankitau/devopps-docker'
 				   echo 'Image push successful'
             }
