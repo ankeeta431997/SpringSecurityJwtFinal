@@ -22,7 +22,7 @@ pipeline {
             steps {
                 echo 'Nexus Docker Repository Login'
                 withCredentials([usernameColonPassword(credentialsId: 'dockerhubpwd2', variable: 'nexus')]) {
-                       sh ' echo $PASS | docker login -u $ankitau --password-stdin $NEXUS_DOCKER_REPO'
+                       sh ' echo $PASS | docker login -u $ankitau --password-Unoveo@12 $NEXUS_DOCKER_REPO'
                     }
                    
                 }
