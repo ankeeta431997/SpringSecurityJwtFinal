@@ -17,14 +17,22 @@ pipeline {
             }
         }
         
-        stage('Push Image to Hub') {
+      
+       stage('Docker Login') {
             steps {
-                script {
-                    withDockerRegistry([credentialsId: 'dockerhubpwd2', url: '']) {
-                        sh 'docker push ankitau/devopps-docker'
+                echo 'Nexus Docker Repository Login'
+                withCredentials([usernameColonPassword(credentialsId: 'dockerhubpwd2', variable: 'nexus')]) {
+                       sh ' echo $PASS | docker login -u $ankitau --password-stdin $NEXUS_DOCKER_REPO'
                     }
-                    echo 'Image push successful'
+                   
                 }
+            }
+        
+
+        stage('Docker Push') {
+            steps {
+                echo 'Pushing Imgaet to docker hub'
+                sh 'docker push $NEXUS_DOCKER_REPO/fakeweb:$BUILD_NUMBER'
             }
         }
     }
