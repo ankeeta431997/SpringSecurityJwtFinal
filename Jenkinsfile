@@ -2,7 +2,7 @@ pipeline {
     agent any
 	environment{
 		NEXUS_REGISTRY = "http://localhost:8081/repository/my-docker-reg/"
-		NEXUS_CREDENTIALS = credentials ('nexus-credentials')
+		NEXUS_CREDENTIALS = credentials ('nexusrepo')
 		NEXUS_USERNAME = "${NEXUS_CREDENTIALS_USR}"
 		NEXUS_PASSWORD = "${NEXUS_CREDENTIALS_PSW}"
 		NEXUS_URL = 'http://localhost:8081/#admin/repository'
