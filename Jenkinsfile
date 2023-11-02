@@ -29,7 +29,7 @@ pipeline {
        stage('Docker Login') {
             steps {
 		    sh 'docker tag devopps-docker:latest $NEXUS_REGISTRY/devopps-docker:latest'
-		    sh "docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWORD' $'NEXUS_REGISTRY"
+		    sh "docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWORD $NEXUS_REGISTRY"
 		    sh "docker push $NEXUS_REGISTRY/devopps-docker:latest"
                     }
        }  
