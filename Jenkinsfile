@@ -21,7 +21,7 @@ pipeline {
        stage('Docker Login') {
             steps {
                 echo 'Nexus Docker Repository Login'
-                withCredentials([usernameColonPassword(credentialsId: 'dockerhubpwd2', variable: 'nexus')]) {
+                withCredentials([usernamePassword(credentialsId: 'dockerhubpwd2', passwordVariable: 'test', usernameVariable: 'nexus')]) {
                        sh ' echo $PASS | docker login -u $ankitau --password-Unoveo@12 $NEXUS_DOCKER_REPO'
                     }
                    
