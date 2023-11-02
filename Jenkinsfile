@@ -3,10 +3,10 @@ pipeline {
 	environment{
 		NEXUS_REGISTRY = "http://localhost:8081/repository/my-docker-reg/"
 		NEXUS_CREDENTIALS = credentials ('nexus-credentials')
-		NEXUS_USERNAME = $(NEXUS_CREDENTIALS_USR)
-		NEXUS_PASSWORD = $(NEXUS_CREDENTIALS_PSW)
-		NEXUS_URL = "http://localhost:8081/#admin/repository"
-		NEXUS_REPOSITORY ="my-docker-reg"
+		NEXUS_USERNAME = "$(NEXUS_CREDENTIALS_USR)"
+		NEXUS_PASSWORD = "$(NEXUS_CREDENTIALS_PSW)"
+		NEXUS_URL = 'http://localhost:8081/#admin/repository'
+		NEXUS_REPOSITORY ='my-docker-reg'
 	}
 	
     stages {
