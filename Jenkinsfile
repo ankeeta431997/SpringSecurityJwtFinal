@@ -1,13 +1,11 @@
 pipeline {
     agent any
-	environment{
-		NEXUS_REGISTRY = "http://192.168.1.16:8085/repository/my-docker-reg/"
-		NEXUS_CREDENTIALS = credentials ('nexusrepo')
-		NEXUS_USERNAME = "${NEXUS_CREDENTIALS_USR}"
-		NEXUS_PASSWORD = "${NEXUS_CREDENTIALS_PSW}"
-		NEXUS_URL = 'http://localhost:8081/#admin/repository'
-		NEXUS_REPOSITORY ='my-docker-reg'
-	}
+    
+    environment {
+        NEXUS_REGISTRY = 'http://192.168.1.16:8085/repository/my-docker-reg/'
+        NEXUS_CREDENTIALS_ID = 'nexusrepo'
+        DOCKER_IMAGE_NAME = 'ankitau/devopps-docker' 
+    }
 	
     stages {
         stage('Build Maven') {
@@ -20,19 +18,23 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh 'docker build -t devopps-docker:latest .'
+                    sh "docker build -t ${DOCKER_IMAGE_NAME} ."
                 }
             }
         }
         
-      
-       stage('Docker Login') {
+        stage('Push Image to Nexus') {
             steps {
-		    // sh 'docker tag devopps-docker:latest $NEXUS_REGISTRY/devopps-docker:latest'
-		    sh "docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWORD $NEXUS_REGISTRY"
-		    echo "Login Successful"
-		    sh "docker push $NEXUS_REGISTRY/devopps-docker:latest"
+                script {
+                    withCredentials([usernamePassword(credentialsId: NEXUS_CREDENTIALS_ID, usernameVariable: 'NEXUS_USERNAME', passwordVariable: 'NEXUS_PASSWORD')]) {
+                        def nexusDockerCmd = "docker login -u ${NEXUS_USERNAME} -p ${NEXUS_PASSWORD} ${NEXUS_REGISTRY}"
+                        sh nexusDockerCmd
+                        sh "docker push ${DOCKER_IMAGE_NAME}"
+                        sh "docker logout ${NEXUS_REGISTRY}"
                     }
-       }  
+                    echo 'Image push to Nexus successful'
+                }
+            }
+        }
     }
 }
