@@ -31,7 +31,7 @@ pipeline {
                 script {
                     sh "docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWORD $NEXUS_REGISTRY"
 					echo "Login Successful"
-                    sh "docker push ${DOCKER_IMAGE_NAME}"
+                    sh "docker push $DOCKER_IMAGE_NAME"
                     sh "docker logout ${NEXUS_REGISTRY}"
                     echo 'Image push to Nexus successful'
                 }
