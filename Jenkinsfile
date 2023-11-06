@@ -21,7 +21,7 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 script {
-                    sh "docker build -t ${DOCKER_IMAGE_NAME} ."
+                    sh 'docker build -t ${DOCKER_IMAGE_NAME} .'
                 }
             }
         }
@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry([credentialsId: 'dockerhubpwd2', url: '']) {
-                        sh 'docker push ankitau/devopps-docker'
+                        sh 'docker push ${DOCKER_IMAGE_NAME}'
                     }
                     echo 'Image push successful'
                 }
@@ -40,10 +40,10 @@ pipeline {
             steps {
                 script {
                     sh "docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWORD $NEXUS_REGISTRY"
-					echo "Login Successful"
+					echo 'Login Successful'
                    // sh "docker push ${DOCKER_IMAGE_NAME}"
-		    sh "docker push ${NEXUS_REGISTRY}/${DOCKER_IMAGE_NAME}"
-                    sh "docker logout ${NEXUS_REGISTRY}"
+		    sh 'docker push ${NEXUS_REGISTRY}/${DOCKER_IMAGE_NAME}'
+                    sh 'docker logout ${NEXUS_REGISTRY}'
                     echo 'Image push to Nexus successful'
                 }
             }
