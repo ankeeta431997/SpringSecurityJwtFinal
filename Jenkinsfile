@@ -3,7 +3,7 @@ pipeline {
     
     environment {
         NEXUS_REGISTRY = 'http://192.168.1.16:8085/repository/my-docker-reg/'
-        NEXUS_CREDENTIALS = credentials('nexusrepo1')
+        NEXUS_CREDENTIALS = credentials('nexusrepo')
 		NEXUS_USERNAME = "${NEXUS_CREDENTIALS_USR}"
         NEXUS_PASSWORD = "${NEXUS_CREDENTIALS_PSW}"
 		
