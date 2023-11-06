@@ -25,6 +25,16 @@ pipeline {
                 }
             }
         }
+	      stage('Push Image to Hub') {
+            steps {
+                script {
+                    withDockerRegistry([credentialsId: 'dockerhubpwd2', url: '']) {
+                        sh 'docker push ankitau/devopps-docker'
+                    }
+                    echo 'Image push successful'
+                }
+            	}
+	      }
         
         stage('Push Image to Nexus') {
             steps {
