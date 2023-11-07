@@ -25,16 +25,16 @@ pipeline {
                 }
             }
         }
-	      stage('Push Image to Hub') {
-            steps {
-                script {
-                    withDockerRegistry([credentialsId: 'dockerhubpwd2', url: '']) {
-                        sh 'docker push ${DOCKER_IMAGE_NAME}'
-                    }
-                    echo 'Image push successful'
-                }
-            	}
-	      }
+	      // stage('Push Image to Hub') {
+       //      steps {
+       //          script {
+       //              withDockerRegistry([credentialsId: 'dockerhubpwd2', url: '']) {
+       //                  sh 'docker push ${DOCKER_IMAGE_NAME}'
+       //              }
+       //              echo 'Image push successful'
+       //          }
+       //      	}
+	      // }
         
         stage('Push Image to Nexus') {
             steps {
