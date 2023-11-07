@@ -39,7 +39,8 @@ pipeline {
         stage('Push Image to Nexus') {
             steps {
                 script {
-                    sh "docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWORD $NEXUS_REGISTRY"
+		    sh "echo ${NEXUS_PASSWORD} | docker login -u ${NEXUS_USERNAME} --password-stdin $NEXUS_REGISTRY"
+                   // sh "docker login -u $NEXUS_USERNAME -p $NEXUS_PASSWORD $NEXUS_REGISTRY"
 					echo 'Login Successful'
                     sh 'docker push ${DOCKER_IMAGE_NAME}'
 		   // sh 'docker push ${NEXUS_REGISTRY}/${DOCKER_IMAGE_NAME}'
