@@ -46,7 +46,7 @@ pipeline {
            		 sh "docker push 192.168.1.16:8085/my-docker-reg/${DOCKER_IMAGE_NAME}"
                  //      sh "docker tag ${DOCKER_IMAGE_NAME} ${NEXUS_REGISTRY}${DOCKER_IMAGE_NAME}"
            	 //      sh "docker push ${NEXUS_REGISTRY}${DOCKER_IMAGE_NAME}"
-                   //    sh 'docker logout ${NEXUS_REGISTRY}'
+                       sh 'docker logout ${NEXUS_REGISTRY}'
                     echo 'Image push to Nexus successful'
                 }
             }
